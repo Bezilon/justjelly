@@ -9,6 +9,8 @@ services:
     restart: unless-stopped
     ports:
       - ${JUSTJELLY_PORT}:3000
+    command: |
+      npm run db:seed
     depends_on: 
       - database
 
