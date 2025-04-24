@@ -45,13 +45,12 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          # registry: ghcr.io
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Pull the latest image (if any) to provide cache layers
       - name: Pull Latest
-        run: docker pull ghcr.io/${{ github.repository }}:latest || true
+        run: docker pull justjelly:latest || true
 
       # https://github.com/docker/metadata-action
       - name: Prepare Docker Metadata
@@ -59,8 +58,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           # List of Docker images to use as base name for tags
-          # (eg. ghcr.io/user/repo for GHCR or user/repo for Docker Hub)
-          images: ghcr.io/${{ github.repository }}
+          images: justjelly
           flavor: latest=true
           # Docker tags based on the following events/attributes
           tags: |
