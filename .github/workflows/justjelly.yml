@@ -50,7 +50,7 @@ jobs:
 
       # Pull the latest image (if any) to provide cache layers
       - name: Pull Latest
-        run: docker pull justjelly:latest || true
+        run: docker pull bezilon/justjelly:latest || true
 
       # https://github.com/docker/metadata-action
       - name: Prepare Docker Metadata
@@ -58,7 +58,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           # List of Docker images to use as base name for tags
-          images: justjelly
+          images: bezilon/justjelly
           flavor: latest=true
           # Docker tags based on the following events/attributes
           tags: |
@@ -77,9 +77,9 @@ jobs:
       - name: Build and Push Docker Images
         uses: docker/build-push-action@v3
         with:
-          file: Dockerfile.nextjs
           context: .
-          platforms: linux/amd64,linux/arm64/v8
+          file: Dockerfile.nextjs
+          # platforms: linux/amd64,linux/arm64/v8
           push: true
           tags: ${{ steps.docker_metadata.outputs.tags }}
           labels: ${{ steps.docker_metadata.outputs.labels }}
