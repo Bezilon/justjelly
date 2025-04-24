@@ -2,6 +2,7 @@ services:
 
   justjelly:
     image: ghcr.io/bezilon/justjelly:latest
+    container_name: justjelly
     build:
       context: .
       dockerfile: Dockerfile.nextjs
@@ -9,25 +10,31 @@ services:
     ports:
       - ${JUSTJELLY_PORT}:3000
     depends_on: 
-      - postgresql
+      - database
 
   database:
-    env_file: database.env
-
     image: postgres
+    container_name: justjelly-db
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
       interval: 1s
       timeout: 5s
       retries: 10
+
+    # TODO: Remove exposed ports before release
+    ports:
+      - 5432:5432
+    volumes:
+      - .:/var/lib/my_data
  
   adminer:
     image: adminer
+    container_name: justjelly-adminer
     restart: always
     ports:
       - ${ADMINER_PORT}:8080

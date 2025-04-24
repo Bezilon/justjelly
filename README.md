@@ -1,3 +1,42 @@
+# Setup
+
+Follow these steps to set up your JustJelly server
+
+## Step 0
+
+### .env file
+
+You can use the following sample `.env` file as a base for your own:
+
+**BE SURE TO CHANGE THE POSTGRES_PASSWORD BEFORE THE FIRST RUN**
+
+```
+JUSTJELLY_PORT=3000
+ADMINER_PORT=8080
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=justjelly
+POSTGRES_USER=justjelly_admin
+POSTGRES_PASSWORD=YourPasswordHere:123!
+```
+
+## Step 1
+
+Navigate to the root directory of the project and run `docker compose up -d` to launch the stack
+
+# drizzle ORM
+Applying changes to the database
+You can generate migrations using drizzle-kit generate command and then run them using the drizzle-kit migrate command.
+
+Generate migrations:
+```npx drizzle-kit generate```
+
+These migrations are stored in the `drizzle/migrations` directory, as specified in your `drizzle.config.ts`. This directory will contain the SQL files necessary to update your database schema and a `meta` folder for storing snapshots of the schema at different migration stages.
+
+Run migrations:
+```npx drizzle-kit migrate```
+
+# Next.js
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
