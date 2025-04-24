@@ -42,12 +42,12 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       # https://github.com/docker/login-action
-      - name: Login to GHCR
-        uses: docker/login-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
           # registry: ghcr.io
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Pull the latest image (if any) to provide cache layers
       - name: Pull Latest
