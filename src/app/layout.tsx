@@ -10,6 +10,7 @@ config.autoAddCss = false
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { useMemo } from "react";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,9 +47,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <nav className="grid grid-cols-[auto_1fr_auto] gap-4 items-center justify-center p-4">
-          <a href="/">
+          <Link href="/">
             <h1 className="text-3xl font-bold grid grid-cols-[auto_auto] gap-4 items-center"><Image src="/justjelly-logo.png" alt="JustJelly Logo" width="50" height="50"/> Just Jelly</h1>
-          </a>
+          </Link>
           <div className="max-w-full">
             <input
               type="text"
@@ -56,9 +57,9 @@ export default function RootLayout({
               className="rounded-lg p-2 w-full outline-none bg-[rgba(64,210,255,0.25)]"
             />
           </div>
-          <a href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
+          <Link href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
             <FontAwesomeIcon icon={faArrowRightToBracket} className="fa-fw" /> Log In
-          </a>
+          </Link>
         </nav>
         {children}
         <footer className="row-start-3 grid gap-4 items-center justify-center p-4 text-center">
