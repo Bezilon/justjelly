@@ -2,7 +2,7 @@ import { db } from "@/drizzle/db";
 import { users } from "@/drizzle/schema/users";
 import { count } from "drizzle-orm";
 
-import RegisterForm from "./components/RegisterForm";
+import RegisterForm from "../components/RegisterForm";
 
 export default async function Home() {
   const userCount = (await db.select({count: count()}).from(users))[0].count;

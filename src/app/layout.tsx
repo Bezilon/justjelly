@@ -8,7 +8,7 @@ config.autoAddCss = false
 
 import { useMemo } from "react";
 
-import TopNavigation from "./components/TopNavigation";
+import TopNavigation from "../components/TopNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
