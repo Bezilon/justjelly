@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { useMemo } from "react";
-import Link from "next/link";
+
+import TopNavigation from "./components/TopNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +32,7 @@ export default function RootLayout({
 }>) {
 
   const today = useMemo(() => new Date(), []);
-
+  
   return (
     <html lang="en">
       <head>
@@ -46,21 +44,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav className="grid grid-cols-[auto_1fr_auto] gap-4 items-center justify-center p-4">
-          <Link href="/">
-            <h1 className="text-3xl font-bold grid grid-cols-[auto_auto] gap-4 items-center"><Image src="/justjelly-logo.png" alt="JustJelly Logo" width="50" height="50"/> Just Jelly</h1>
-          </Link>
-          <div className="max-w-full">
-            <input
-              type="text"
-              placeholder="Search for your favourite movies, shows, music, etc..."
-              className="rounded-lg p-2 w-full outline-none bg-[rgba(64,210,255,0.25)]"
-            />
-          </div>
-          <Link href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
-            <FontAwesomeIcon icon={faArrowRightToBracket} className="fa-fw" /> Log In
-          </Link>
-        </nav>
+        <TopNavigation />
         {children}
         <footer className="row-start-3 grid gap-4 items-center justify-center p-4 text-center">
           <a href="https://github.com/Bezilon/justjelly" target="_blank" className="font-bold text-sm">&copy; {today.getFullYear()} JustJelly</a>

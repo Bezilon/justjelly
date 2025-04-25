@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm';
-import { db } from "@/db";
-import { users } from "@/db/schema";
+import { db } from "@/drizzle/db";
+import { users } from "@/drizzle/schema";
 
 export async function seedAdminUser() {
   await db.insert(users).values({
