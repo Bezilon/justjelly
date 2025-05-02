@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { db } from "@/drizzle/db";
-import { users } from "@/drizzle/schema/users";
-import { count } from "drizzle-orm";
+import { auth } from "@/auth";
 
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TopNavigation = async () => {
-  const userCount = (await db.select({count: count()}).from(users))[0].count;
+
+  const session = await auth();
 
   return <nav className="grid grid-cols-[auto_1fr_auto] gap-4 items-center justify-center p-4">
     <Link href="/">
@@ -22,9 +21,11 @@ const TopNavigation = async () => {
         className="rounded-lg p-2 w-full outline-none bg-[rgba(64,210,255,0.25)]"
       />
     </div>
-    <Link href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg" aria-disabled={!userCount}>
+    { session?.user ? <Link href="/logout" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
+      <FontAwesomeIcon icon={faRightFromBracket} className="fa-fw" /> Log Out
+    </Link> : <Link href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
       <FontAwesomeIcon icon={faArrowRightToBracket} className="fa-fw" /> Log In
-    </Link>
+    </Link> }
   </nav>
 }
 

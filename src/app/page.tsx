@@ -1,5 +1,5 @@
 import { db } from "@/drizzle/db";
-import { users } from "@/drizzle/schema/users";
+import { users } from "@/drizzle/schema/user";
 import { count } from "drizzle-orm";
 
 import RegisterForm from "@/components/RegisterForm";
