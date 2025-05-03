@@ -15,6 +15,13 @@
       "when": 1746160828756,
       "tag": "0001_majestic_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746252387317,
+      "tag": "0002_conscious_microchip",
+      "breakpoints": true
     }
   ]
 }

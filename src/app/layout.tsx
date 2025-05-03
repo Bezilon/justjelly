@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+
+import SessionProvider from "@/providers/SessionProvider";
+
+import { ToastContainer } from "react-toastify";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-config.autoAddCss = false
-
-import { useMemo } from "react";
 
 import TopNavigation from "../components/TopNavigation";
+
+import "./globals.css";
+import { auth } from "@/auth";
+config.autoAddCss = false
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,13 +29,14 @@ export const metadata: Metadata = {
   description: "Aggregated search engine for Jellyfin servers",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
 
-  const today = useMemo(() => new Date(), []);
+  const today = new Date();
   
   return (
     <html lang="en">
@@ -44,12 +49,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopNavigation />
-        {children}
+        <SessionProvider session={session}>
+          <TopNavigation />
+          {children}
+        </SessionProvider>
         <footer className="row-start-3 grid gap-4 items-center justify-center p-4 text-center">
           <a href="https://github.com/Bezilon/justjelly" target="_blank" className="font-bold text-sm">&copy; {today.getFullYear()} JustJelly</a>
           <a href="https://www.flaticon.com/free-icons/jellyfish" target="_blank" title="jellyfish icons" className="text-xs">Jellyfish icon created by Freepik - Flaticon</a>
         </footer>
+        <ToastContainer autoClose={3000} closeOnClick={true} theme={'dark'}/>
       </body>
     </html>
   );

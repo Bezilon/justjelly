@@ -21,9 +21,9 @@ const TopNavigation = async () => {
         className="rounded-lg p-2 w-full outline-none bg-[rgba(64,210,255,0.25)]"
       />
     </div>
-    { session?.user ? <Link href="/logout" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
+    { session?.user ? <Link href="/log-out" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
       <FontAwesomeIcon icon={faRightFromBracket} className="fa-fw" /> Log Out
-    </Link> : <Link href="/login" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
+    </Link> : <Link href="/log-in" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg">
       <FontAwesomeIcon icon={faArrowRightToBracket} className="fa-fw" /> Log In
     </Link> }
   </nav>

@@ -13,18 +13,28 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@hookform/resolvers": "^5.0.1",
+    "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.42.0",
+    "drizzle-zod": "^0.7.1",
     "next": "^15.3.1",
     "next-auth": "^5.0.0-beta.27",
     "pg": "^8.15.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-fontawesome": "^1.7.1"
+    "react-fontawesome": "^1.7.1",
+    "react-hook-form": "^7.56.1",
+    "react-spinners": "^0.17.0",
+    "react-toastify": "^11.0.5",
+    "tailwind-merge": "^3.2.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/pg": "^8.11.14",
     "@types/react": "^19",
@@ -34,5 +44,15 @@
     "eslint-config-next": "15.2.3",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./jwt": "./jwt/index.js",
+    "./react": "./react/index.js",
+    "./core": "./core/index.js",
+    "./next": "./next/index.js",
+    "./middleware": "./middleware.js",
+    "./client/_utils": "./client/_utils.js",
+    "./providers/*": "./providers/*.js"
   }
 }

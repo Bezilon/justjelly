@@ -6,7 +6,11 @@ import authConfig from "./auth.config";
 
 const { auth } = NextAuth(authConfig);
 
-const protectedRoutes = ["/user-info"];
+const protectedRoutes = [
+  "/profile"
+];
+
+// export const { auth: middleware } = NextAuth(authConfig);
 
 export default async function middleware(request: NextRequest) {
   const session = await auth();
