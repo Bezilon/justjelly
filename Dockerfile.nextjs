@@ -19,6 +19,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN echo "AUTH_SECRET=$(grep -Pa '\x00' "$(npx auth secret --raw)")" >> .env
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
@@ -49,8 +51,6 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT=3000
-
-RUN echo "AUTH_SECRET=$(npx auth secret --raw | grep -Pa '\x00')" >> .env
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
