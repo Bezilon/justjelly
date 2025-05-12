@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 
-import { logout } from '@/actions/user.actions';
+// import { logout } from '@/actions/user.actions';
 
 const LogOutPage = () => {
   const router = useRouter();

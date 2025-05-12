@@ -4,8 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { db } from "@/drizzle/db"
 
-import authConfig from "./auth.config"
-import { getUserFromDb } from "./actions/user.actions"
+import authConfig from "@/auth.config"
+import { getUserFromDb } from "@/actions/user.actions"
  
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -17,7 +17,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         username: { label: "Email", type: "email", placeholder: "your@email.com" },
         password: {  label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         if (!credentials?.username || !credentials.password) {
           return null;
         }

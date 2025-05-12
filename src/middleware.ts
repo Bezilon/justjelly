@@ -7,7 +7,8 @@ import authConfig from "./auth.config";
 const { auth } = NextAuth(authConfig);
 
 const protectedRoutes = [
-  "/profile"
+  "/settings",
+  "/profile",
 ];
 
 // export const { auth: middleware } = NextAuth(authConfig);

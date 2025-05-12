@@ -47,7 +47,7 @@ export async function getUserFromDb(email: string, password: string) {
       success: true,
       data: existedUser,
     }
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: error.message,
@@ -85,7 +85,7 @@ export async function login({
       success: true,
       data: res,
     }
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: "Email or password is incorrect.",
@@ -103,7 +103,7 @@ export async function logout() {
     return {
       success: true,
     }
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: error.message,
@@ -114,7 +114,8 @@ export async function logout() {
 export async function getUserCount() {
   try {
     return (await db.select({count: count()}).from(users))[0].count;
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error);
     return null;
   }
 }

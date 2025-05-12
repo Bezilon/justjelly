@@ -16,7 +16,7 @@ type Props = {
 const LoginForm = ({newUser}:Props) => {
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof FormSchema>>({
+  const { register, handleSubmit/*, formState: { errors }*/ } = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       email: '',
@@ -36,7 +36,7 @@ const LoginForm = ({newUser}:Props) => {
 
   return <form data-form-type="login" className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
     <h1>Log In</h1>
-    { newUser ? <b>Thank you for registering, now you can log in with "{newUser}" and your password</b> : null }
+    { newUser ? <b>Thank you for registering, now you can log in with &quot;{newUser}&quot; and your password</b> : null }
     <input {...register('email')} placeholder="Email" required className="bg-[rgba(64,210,255,0.25)] rounded p-2" data-form-type="email"/>
     <input {...register('password')} type="password" placeholder="Password" required className="bg-[rgba(64,210,255,0.25)] rounded p-2" data-form-type="password"/>
     <input type="submit" value="Log In" className="text-m font-bold bg-[rgb(26,110,136)] p-2 rounded-lg cursor-pointer"/>

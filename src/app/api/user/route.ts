@@ -1,13 +1,7 @@
 import { db } from "@/drizzle/db"
-import { users } from "@/drizzle/schema"
+import { users, userSchema } from "@/drizzle/schema"
 import { hash } from "bcryptjs"
 import { NextResponse } from "next/server"
-import { z } from "zod"
-
-export const userSchema = z.object({
-  email: z.string().min(1, 'Username is required').email('Invalid email address'),
-  password: z.string().min(1, 'Password is required').min(8, 'Password must be at least 8 characters long')
-})
 
 export async function GET(req: Request) {
   try {

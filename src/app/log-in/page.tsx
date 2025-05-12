@@ -21,7 +21,7 @@ const LogInPage = () => {
     if (status === "authenticated") {
       router.push("/");
     }
-  }, [status]);
+  }, [status, router]);
   
 
   return <>

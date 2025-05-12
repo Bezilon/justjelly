@@ -13,7 +13,7 @@ type Props = {
 const RegisterForm = ({firstUser}:Props) => {
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof FormSchema>>({
+  const { register, handleSubmit/*, formState: { errors }*/ } = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       email: '',
